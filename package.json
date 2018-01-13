@@ -1,0 +1,31 @@
+{
+  "name": "auction",
+  "description": "Projekt aukcji internetowych",
+  "private": true,
+  "scripts": {
+    "start": "live-server"
+  },
+  "dependencies": {
+    "@angular/animations": "^5.1.3",
+    "@angular/cdk": "^5.0.3",
+    "@angular/common": "^5.0.0",
+    "@angular/compiler": "^5.0.0",
+    "@angular/core": "^5.0.0",
+    "@angular/forms": "^5.0.0",
+    "@angular/http": "^5.0.0",
+    "@angular/material": "^5.0.3",
+    "@angular/platform-browser": "^5.0.0",
+    "@angular/platform-browser-dynamic": "^5.0.0",
+    "@angular/router": "^5.0.0",
+    "bootstrap": "^3.3.7",
+    "core-js": "^2.4.0",
+    "jquery": "^3.2.1",
+    "rxjs": "^5.0.1",
+    "systemjs": "^0.19.37",
+    "zone.js": "^0.8.4"
+  },
+  "devDependencies": {
+    "live-server": "^0.8.2",
+    "typescript": "^2.0.0"
+  }
+}
