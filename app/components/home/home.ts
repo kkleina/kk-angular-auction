@@ -6,7 +6,6 @@ import {Product, ProductService} from '../../services/product-service';
   templateUrl: 'app/components/home/home.html',
   styleUrls: ['app/components/home/home.css']
 })
-
 export default class HomeComponent {
   products: Product[] = [];
 

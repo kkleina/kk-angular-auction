@@ -18,7 +18,7 @@ import {ProductService} from './services/product-service';
       BrowserModule,
       RouterModule.forRoot([
         {path: '', component: HomeComponent},
-        {path: 'products/:prodTitle', component: ProductDetailComponent}
+        {path: 'products/:productId', component: ProductDetailComponent}
       ])
     ],
     declarations: [
