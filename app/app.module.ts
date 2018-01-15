@@ -1,5 +1,6 @@
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
+import {ReactiveFormsModule} from '@angular/forms';
 import {RouterModule} from '@angular/router';
 import {LocationStrategy, HashLocationStrategy} from '@angular/common';
 import ApplicationComponent from './components/application/application';
@@ -12,10 +13,12 @@ import ProductItemComponent from './components/product-item/product-item';
 import SearchComponent from './components/search/search';
 import StarsComponent from './components/stars/stars';
 import {ProductService} from './services/product-service';
+import {FilterPipe} from "./components/pipes/filter-pipe";
 
 @NgModule({
     imports: [
       BrowserModule,
+      ReactiveFormsModule,
       RouterModule.forRoot([
         {path: '', component: HomeComponent},
         {path: 'products/:productId', component: ProductDetailComponent}
@@ -30,7 +33,8 @@ import {ProductService} from './services/product-service';
       ProductDetailComponent,
       ProductItemComponent,
       SearchComponent,
-      StarsComponent
+      StarsComponent,
+      FilterPipe
     ],
     providers: [
       ProductService,
