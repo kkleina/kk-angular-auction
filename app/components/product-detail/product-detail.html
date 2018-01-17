@@ -11,6 +11,16 @@
   </div>
 </div>
 <div id="reviews-anchor" class="well">
+  <div class="text-right">
+    <button (click)="isReviewHidden = !isReviewHidden" class="btn btn-primary">Zostaw opinię</button>
+  </div>
+
+  <div [hidden]="isReviewHidden" class="add-review">
+    <auction-stars [(rating)]="newRating" [readonly]="false" class="lead"></auction-stars>
+    <textarea [(ngModel)]="newComment" class="form-control" rows="2"></textarea>
+    <button (click)="addReview()" class="btn btn-default">Dodaj opinię</button>
+  </div>
+
   <div class="row" *ngFor="let review of reviews">
     <auction-stars [rating]="review.rating"></auction-stars>
     <span>{{ review.user }}</span>

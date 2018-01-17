@@ -1,3 +1,7 @@
 .row:not(:last-of-type) {
   margin-bottom: 30px;
 }
+
+.add-review {
+  margin-bottom: 30px;
+}
