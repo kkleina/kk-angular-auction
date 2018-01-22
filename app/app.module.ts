@@ -1,6 +1,6 @@
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
-import {ReactiveFormsModule, FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {RouterModule} from '@angular/router';
 import {LocationStrategy, HashLocationStrategy} from '@angular/common';
 import ApplicationComponent from './components/application/application';
@@ -16,31 +16,31 @@ import {ProductService} from './services/product-service';
 import {FilterPipe} from "./components/pipes/filter-pipe";
 
 @NgModule({
-    imports: [
-      BrowserModule,
-      ReactiveFormsModule,
-      FormsModule,
-      RouterModule.forRoot([
-        {path: '', component: HomeComponent},
-        {path: 'products/:productId', component: ProductDetailComponent}
-      ])
-    ],
-    declarations: [
-      ApplicationComponent,
-      CarouselComponent,
-      FooterComponent,
-      HomeComponent,
-      NavbarComponent,
-      ProductDetailComponent,
-      ProductItemComponent,
-      SearchComponent,
-      StarsComponent,
-      FilterPipe
-    ],
-    providers: [
-      ProductService,
-      {provide: LocationStrategy, useClass: HashLocationStrategy}
-    ],
-    bootstrap: [ ApplicationComponent ]
+  imports: [
+    BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
+    RouterModule.forRoot([
+      {path: '', component: HomeComponent},
+      {path: 'products/:productId', component: ProductDetailComponent}
+    ])
+  ],
+  declarations: [
+    ApplicationComponent,
+    CarouselComponent,
+    FooterComponent,
+    HomeComponent,
+    NavbarComponent,
+    ProductDetailComponent,
+    ProductItemComponent,
+    SearchComponent,
+    StarsComponent,
+    FilterPipe
+  ],
+  providers: [
+    ProductService,
+    {provide: LocationStrategy, useClass: HashLocationStrategy}
+  ],
+  bootstrap: [ ApplicationComponent ]
 })
 export class AppModule { }
