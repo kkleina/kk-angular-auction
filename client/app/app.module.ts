@@ -2,6 +2,7 @@ import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {RouterModule} from '@angular/router';
+import {HttpModule} from '@angular/http';
 import {LocationStrategy, HashLocationStrategy} from '@angular/common';
 import ApplicationComponent from './components/application/application';
 import CarouselComponent from './components/carousel/carousel';
@@ -13,12 +14,14 @@ import ProductItemComponent from './components/product-item/product-item';
 import SearchComponent from './components/search/search';
 import StarsComponent from './components/stars/stars';
 import {ProductService} from './services/product-service';
+import {ONLINE_AUCTION_SERVICES} from './services/services';
 import {FilterPipe} from "./components/pipes/filter-pipe";
 
 @NgModule({
   imports: [
     BrowserModule,
     FormsModule,
+    HttpModule,
     ReactiveFormsModule,
     RouterModule.forRoot([
       {path: '', component: HomeComponent},
@@ -39,8 +42,10 @@ import {FilterPipe} from "./components/pipes/filter-pipe";
   ],
   providers: [
     ProductService,
+    ONLINE_AUCTION_SERVICES,
     {provide: LocationStrategy, useClass: HashLocationStrategy}
   ],
   bootstrap: [ ApplicationComponent ]
 })
 export class AppModule { }
+

@@ -9,7 +9,7 @@ import 'rxjs/add/operator/debounceTime';
   styleUrls: ['app/components/home/home.css']
 })
 export default class HomeComponent {
-  products: Product[] = [];
+  products: Observable<Product[]>;
   titleFilter: FormControl = new FormControl();
   filterCriteria: string;
 
@@ -20,6 +20,12 @@ export default class HomeComponent {
       .subscribe(
         value => this.filterCriteria = value,
         error => console.error(error)
+      );
+    this.productService.searchEvent
+      .subscribe(
+        params => this.products = this.productService.search(params),
+        console.error.bind(console),
+        () => console.log('ZROBIONE')
       );
   }
 }

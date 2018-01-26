@@ -1,8 +1,13 @@
 {
   "compilerOptions": {
-    "target": "ES5",
-    "module": "commonjs",
+    "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "noImplicitAny": true
-  }
+    "module": "commonjs",
+    "outDir": "build",
+    "target": "ES5",
+  },
+  "exclude": [
+    "node_modules",
+    "client"
+  ]
 }

@@ -12,7 +12,7 @@
   <div class="form-group">
     <label for="prodcutCategory">Kategoria produktów:</label>
     <select id="prodcutCategory" class="form-control" formControlName="category">
-      <option value="-1">Wszystkie kategorie</option>
+      <option value="">Wszystkie kategorie</option>
       <option *ngFor="let c of categories" [value]="c">{{ c }}</option>
     </select>
   </div>

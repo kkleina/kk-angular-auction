@@ -1,56 +1,60 @@
-import {Injectable} from '@angular/core';
-
 export class Product {
   constructor(
-      public id: number,
-      public title: string,
-      public price: number,
-      public rating: number,
-      public description: string,
-      public categories: string[]) {
-  }
+    public id: number,
+    public title: string,
+    public price: number,
+    public rating: number,
+    public description: string,
+    public categories: string[]
+  ) {}
 }
 
 export class Review {
   constructor(
-      public id: number,
-      public productId: number,
-      public timestamp: Date,
-      public user: string,
-      public rating: number,
-      public comment: string) {
-  }
+    public id: number,
+    public productId: number,
+    public timestamp: string,
+    public user: string,
+    public rating: number,
+    public comment: string
+  ) {}
 }
 
-@Injectable()
-export class ProductService {
-  getProducts(): Product[] {
-    return products.map(p => new Product(p.id, p.title, p.price, p.rating, p.description, p.categories));
+export function getProducts(params = <any>{}): Product[] {
+  let result = products;
+
+  if (params.title) {
+    result = result.filter(
+      p => p.title.toLowerCase().indexOf(params.title.toLowerCase()) !== -1);
+  }
+  if (parseInt(params.price) && result.length > 0) {
+    result = result.filter(
+      p => p.price <= parseInt(params.price));
+  }
+  if (params.category && result.length > 0) {
+    result = result.filter(
+      p => p.categories.indexOf(params.category.toLowerCase()) !== -1);
   }
 
-  getProductById(productId: number): Product {
-    return products.find(p => p.id === productId);
-  }
+  return result;
+}
 
-  getReviewsForProduct(productId: number): Review[] {
-    return reviews
-        .filter(r => r.productId === productId)
-        .map(r => new Review(r.id, r.productId, new Date(r.timestamp), r.user, r.rating, r.comment));
-  }
+export function getProductById(productId: number): Product {
+  return products.find(p => p.id === productId);
+}
 
-  getAllCategories(): string[] {
-    return ['Książki', 'Elektronika', 'Sprzęt'];
-  }
+export function getReviewsByProductId(productId: number): Review[] {
+  return reviews.filter(r => r.productId === productId);
 }
 
 var products = [
   {
     "id": 0,
-    "title": "Pierwszy produkt",
+    "title": 'Pierwszy produkt',
     "price": 24.99,
     "rating": 4.3,
-    "description": "To jest krótki opis. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    "categories": ["electronics", "hardware"]
+    "description": 'To jest krótki opis. Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+    "categories": ['electronics', 'hardware']
   },
   {
     "id": 1,
@@ -65,7 +69,7 @@ var products = [
     "title": "Trzeci produkt",
     "price": 74.99,
     "rating": 4.2,
-    "description": "To jest krótki opisn. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    "description": "To jest krótki opis. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
     "categories": ["electronics"]
   },
   {
@@ -86,10 +90,10 @@ var products = [
   },
   {
     "id": 5,
-    "title": "Szósty produkt",
+    "title": "Sixth Product",
     "price": 54.99,
     "rating": 4.6,
-    "description": "To jest krótki opis. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    "description": "This is a short description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
     "categories": ["books"]
   }
 ];

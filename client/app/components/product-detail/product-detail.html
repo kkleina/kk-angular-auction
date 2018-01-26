@@ -1,15 +1,19 @@
 <div class="thumbnail">
   <img src="http://placehold.it/820x320" class="img-responsive">
   <div>
-    <h4 class="pull-right">{{ product.price }}</h4>
-    <h4>{{ product.title }}</h4>
-    <p>{{ product.description }}</p>
+    <h4 class="pull-right">{{ product?.price | currency:'PLN' }}</h4>
+    <h4>{{ product?.title }}</h4>
+    <p>{{ product?.description }}</p>
   </div>
   <div class="ratings">
-    <p class="pull-right">Opinie: {{ reviews.length }}</p>
-    <p><auction-stars [rating]="product.rating"></auction-stars></p>
+    <p class="pull-right">Opinie: {{ reviews?.length }}</p>
+    <p><auction-stars [rating]="product?.rating"></auction-stars></p>
   </div>
 </div>
+
+<button class="btn btn-default btn-lg" [ngClass]="{active: isWatching}" (click)="toggleWatchProduct()" role="button">{{ isWatching ? 'Przestań obserwować' : 'Obserwuj' }}</button>
+<label>Aktualna oferta: {{ currentBid | currency:'PLN' }}</label>
+
 <div id="reviews-anchor" class="well">
   <div class="text-right">
     <button (click)="isReviewHidden = !isReviewHidden" class="btn btn-primary">Zostaw opinię</button>

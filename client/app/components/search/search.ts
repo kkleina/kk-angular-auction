@@ -4,8 +4,7 @@ import {ProductService} from '../../services/product-service';
 
 @Component({
   selector: 'auction-search',
-  templateUrl: 'app/components/search/search.html',
-  providers: [ProductService]
+  templateUrl: 'app/components/search/search.html'
 })
 export default class SearchComponent {
   categories: string[];
@@ -18,13 +17,13 @@ export default class SearchComponent {
     this.formModel = fb.group({
       'title': [null, Validators.minLength(3)],
       'price': [null, positiveNumberValidator],
-      'category': [-1]
+      'category': ['']
     })
   }
 
   onSearch(){
     if (this.formModel.valid){
-      console.log(this.formModel.value);
+      this.productService.searchEvent.emit(this.formModel.value);
     }
   }
 }

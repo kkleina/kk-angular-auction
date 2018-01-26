@@ -1,6 +1,9 @@
 import {Component} from '@angular/core';
+import {NgClass} from '@angular/common';
 import {ActivatedRoute}  from '@angular/router';
+import {Subscription} from 'rxjs/Subscription';
 import {Product, Review, ProductService} from '../../services/product-service';
+import {BidService} from '../../services/bid-service';
 import StarsComponet from '../stars/stars';
 
 @Component({
@@ -16,10 +19,24 @@ export default class ProductDetailComponent {
   newRating: number;
   isReviewHidden: boolean = true;
 
-  constructor(route: ActivatedRoute, productService: ProductService){
+  constructor(route: ActivatedRoute, productService: ProductService, private bidService: BidService){
     let prodId: number = parseInt(route.snapshot.params['productId']);
-    this.product = productService.getProductById(prodId);
-    this.reviews = productService.getReviewsForProduct(this.product.id);
+    productService
+      .getProductById(prodId)
+      .subscribe(
+        product => {
+          this.product = product;
+          this.currentBid = product.price;
+        },
+        error => console.error(error)
+      );
+
+    productService
+      .getReviewsForProduct(prodId)
+      .subscribe(
+        reviews => this.reviews = reviews,
+        error => console.error(error)
+      );
   }
 
   addReview(){
@@ -39,5 +56,20 @@ export default class ProductDetailComponent {
     rhis.newRating = 0;
     this.newComment = null;
     this.idReviewHidden = true;
+  }
+
+  toggleWatchProduct(){
+    if (this.subscription){
+      this.subscription.unsubscribe();
+      this.subscription = null;
+      this.isWatching = false;
+    }else{
+      this.isWatching = true;
+      this.subscription = this.bidService.watchProduct(this.product.id)
+        .subscribe(
+          products => this.currentBid = products.find((p: any) => p.productId === this.product.id).bid,
+          error => console.log(error)
+        );
+    }
   }
 }
