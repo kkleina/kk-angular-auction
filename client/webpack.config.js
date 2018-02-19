@@ -65,8 +65,8 @@ module.exports = {
     new ProvidePlugin({jQuery: 'jquery', jquery: 'jquery', $: 'jquery'}),
     new ContextReplacementPlugin(
        // To prevent Webpack from resolving paths to lazily loaded modules at the build time
-      /angular(\\|\/)core(\\|\/)(esm(\\|\/)src|src)(\\|\/)linker/,
-      path.join(__dirname, 'src') // location of your src
+      /\@angular(\\|\/)core(\\|\/)esm5/,
+      path.resolve(__dirname, "./src")
     ),
   ],
   resolve: {

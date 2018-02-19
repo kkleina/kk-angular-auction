@@ -1,27 +1,29 @@
-.caption {
-  height: 130px;
+.thumbnail {
+  border: 1px solid transparent;
+  border-radius: 0;
+  padding: 15px;
+}
+
+.thumbnail:hover {
+  border: 1px solid #ffab00;
+}
+
+.thumbnail .caption {
+  height: 100px;
   overflow: hidden;
-}
-
-.caption h4 {
-  white-space: nowrap;
-}
-
-.thumbail {
   padding: 0;
 }
 
-.thumbail img {
-  width: 100%;
+.product-img {
+  position: relative;
 }
 
-.thumbail .caption-full {
-  padding: 9px;
-  color: #333;
-}
-
-.ratings {
-  color: #d17581;
-  padding-left: 10px;
-  padding-right: 10px;
+.price {
+  background: #333;
+  color: #fff;
+  font-size: 12px;
+  padding: 5px 10px;
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
 }

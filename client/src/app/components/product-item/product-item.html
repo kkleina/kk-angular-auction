@@ -1,11 +1,13 @@
 <div class="thumbnail">
-  <img src="http://placehold.it/320x150">
+  <div class="product-img">
+    <a [routerLink]="['/products', product.id]"><img src="http://placehold.it/320x400" class="img-responsive" alt=""></a>
+    <span class="price">{{ product.price | currency:'PLN ' }}</span>
+  </div>
   <div class="caption">
-    <h4 class="pull-right">{{ product.price | currency:'PLN' }}</h4>
     <h4><a [routerLink]="['/products', product.id]">{{ product.title }}</a></h4>
     <p>{{ product.description }}</p>
   </div>
-  <div class="ratings">
+  <div class="ratings text-right">
     <auction-stars [rating]="product.rating"></auction-stars>
   </div>
 </div>
